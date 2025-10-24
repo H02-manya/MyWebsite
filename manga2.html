@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>漫画阅读</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* --- 新增章节网格布局 --- */
+.chap-list-vertical {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 一行三个 */
+  gap: 15px;
+  padding: 15px;
+}
+
+/* --- 章节卡片样式 --- */
+.chap-card-vertical {
+  background: #f8f8f8;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+.chap-card-vertical:hover {
+  background: #e8e8e8;
+  transform: scale(1.05);
+}
+
+/* --- 响应式：窄屏改成 2 或 1 列 --- */
+@media (max-width: 900px) {
+  .chap-list-vertical { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .chap-list-vertical { grid-template-columns: repeat(1, 1fr); }
+}
+</style>
+</head>
+
+<body class="light">
+  <header class="site-header">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+      <div style="cursor:pointer;" onclick="location.href='index.html'">
+        <h1 class="site-title">我的漫画</h1>
+        <div class="site-sub">点击章节阅读漫画</div>
+      </div>
+      <button class="btn" onclick="location.href='index.html'">首页</button>
+    </div>
+  </header>
+
+  <main class="container index-main">
+    <div class="cover-card">
+      <img src="images/男人配額制/cover.jpg" alt="封面">
+    </div>
+
+    <div class="chapters-area">
+      <div id="chapList" class="chap-list-vertical"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small class="muted">漫画阅读演示 · 点击章节进入阅读</small>
+    </div>
+  </footer>
+
+<script src="chapters_manga2.js"></script>
+<script>
+  const mangaId = location.pathname.match(/manga\d+/)?.[0] || 'manga1';
+  function safePad(n){ return String(n).padStart(2,'0'); }
+  function renderIndex(CHAPTERS){
+    const listEl = document.getElementById('chapList');
+    listEl.innerHTML = '';
+    const keys = Object.keys(CHAPTERS).sort((a,b)=>parseInt(a,10)-parseInt(b,10));
+    if(keys.length === 0){
+      listEl.innerHTML = `<div class="muted">没有章节数据，请检查 chapters_${mangaId}.js</div>`;
+      return;
+    }
+
+    keys.forEach(k=>{
+      const ch = CHAPTERS[k];
+      const card = document.createElement('div');
+      card.className = 'chap-card-vertical';
+      card.textContent = ch.title || `第${safePad(k)}话`;
+      card.addEventListener('click', ()=> location.href=`reader.html?manga=${mangaId}&chap=${encodeURIComponent(k)}`);
+      listEl.appendChild(card);
+    });
+  }
+
+  if(typeof CHAPTERS!=='undefined') renderIndex(CHAPTERS);
+</script>
+</body>
+</html>

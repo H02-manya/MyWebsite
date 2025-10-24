@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>阅读 · 漫画</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="light">
+
+  <header class="reader-header">
+    <div class="container reader-top">
+      <div>
+        <button id="backBtn" class="btn">⬅ 首页</button>
+        <span id="chapterTitle" class="chapter-title"></span>
+      </div>
+      <div class="reader-controls">
+        <button id="prevChapter" class="btn">上一话</button>
+        <button id="nextChapter" class="btn">下一话</button>
+        <button id="fsBtn" class="btn">全屏</button>
+        <button id="tocBtn" class="btn">目录</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="viewer" class="viewer container" tabindex="0">
+    <div id="placeholder" class="muted" style="text-align:center;padding:40px">加载图片中…</div>
+  </main>
+
+<script>
+  // 动态加载章节文件
+  const params = new URLSearchParams(location.search);
+  const mangaKey = params.get('manga') || 'manga1';
+  const chapKey = params.get('chap') || '01';
+  const script = document.createElement('script');
+  script.src = `chapters_${mangaKey}.js`;
+  script.onload = () => {
+    if (typeof CHAPTERS === 'undefined') {
+      document.getElementById('placeholder').textContent = '未找到章节文件。';
+    } else {
+      initReader(CHAPTERS, chapKey, mangaKey);
+    }
+  };
+  document.body.appendChild(script);
+</script>
+
+<script src="script.js"></script>
+
+
+
+</body>
+</html>
