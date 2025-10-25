@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>漫画目录</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="light">
+  <header class="site-header">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+      <div style="cursor:pointer;" onclick="location.href='index.html'">
+        <h1 class="site-title">H02漫画</h1>
+        <div class="site-sub">选择要阅读的漫画</div>
+      </div>
+      <button class="btn" onclick="location.href='index.html'">返回</button>
+    </div>
+  </header>
+
+  <main class="container index-main">
+    <div class="manga-list">
+      <!-- 漫画1 -->
+      <div class="manga-card" onclick="location.href='kr_manga_01.html'">
+        <img src="images/kr_manga/請玷汙我女友/cover.jpg" alt="漫画1">
+        <div class="manga-info">
+          <h3>請玷汙我女友</h3>
+        </div>
+      </div>
+
+      <!-- 漫画2（示例） -->
+      <div class="manga-card" onclick="location.href='kr_manga_02.html'">
+        <img src="images/kr_manga/男人配額制/cover.jpg" alt="漫画2">
+        <div class="manga-info">
+          <h3>男人配額制</h3>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small class="muted">选择漫画开始阅读</small>
+    </div>
+  </footer>
+
+<style>
+.manga-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.manga-card {
+  width: 200px;
+  cursor: pointer;
+  background: var(--panel);
+  border-radius: 12px;
+  box-shadow: var(--cardShadow);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.manga-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+.manga-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+.manga-info {
+  padding: 10px 14px;
+}
+.manga-info h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+</style>
+
+</body>
+</html>

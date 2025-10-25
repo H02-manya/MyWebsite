@@ -28,25 +28,32 @@
   </main>
 
 <script>
-  // 动态加载章节文件
+  // 从网址取得参数
   const params = new URLSearchParams(location.search);
-  const mangaKey = params.get('manga') || 'manga1';
+  const mangaKey = params.get('manga') || 'manga1'; // 例: kr_manga_01
   const chapKey = params.get('chap') || '01';
+
+  // 让路径可以正确对应文件名
+  // 例如 mangaKey = kr_manga_01 → chapters_kr_manga_01.js
+  const chapterFile = `chapters_${mangaKey}.js`;
+
+  // 动态载入章节文件
   const script = document.createElement('script');
-  script.src = `chapters_${mangaKey}.js`;
+  script.src = chapterFile;
   script.onload = () => {
     if (typeof CHAPTERS === 'undefined') {
-      document.getElementById('placeholder').textContent = '未找到章节文件。';
+      document.getElementById('placeholder').textContent = '未找到章节文件：' + chapterFile;
     } else {
       initReader(CHAPTERS, chapKey, mangaKey);
     }
+  };
+  script.onerror = () => {
+    document.getElementById('placeholder').textContent = '加载章节文件失败：' + chapterFile;
   };
   document.body.appendChild(script);
 </script>
 
 <script src="script.js"></script>
-
-
 
 </body>
 </html>

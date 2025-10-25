@@ -79,7 +79,7 @@ function initReader(CHAPTERS, chapKey, mangaKey){
     if (mangaName) {
       location.href = `${mangaName}.html`;
     } else {
-      location.href = 'index.html'; // fallback
+      location.href = 'korean.html'; // fallback
     }
   });
 

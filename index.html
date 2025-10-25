@@ -3,77 +3,78 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>漫画目录</title>
+<title>漫画阅读 - 分类选择</title>
 <link rel="stylesheet" href="style.css">
-</head>
-<body class="light">
-  <header class="site-header">
-    <div class="container">
-      <h1 class="site-title">漫画目录</h1>
-      <div class="site-sub">选择要阅读的漫画</div>
-    </div>
-  </header>
-
-  <main class="container index-main">
-    <div class="manga-list">
-      <!-- 漫画1 -->
-      <div class="manga-card" onclick="location.href='manga1.html'">
-        <img src="images/請玷汙我女友/cover.jpg" alt="漫画1">
-        <div class="manga-info">
-          <h3>請玷汙我女友</h3>
-        </div>
-      </div>
-
-      <!-- 漫画2（示例） -->
-      <div class="manga-card" onclick="location.href='manga2.html'">
-        <img src="images/男人配額制/cover.jpg" alt="漫画2">
-        <div class="manga-info">
-          <h3>男人配額制</h3>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <small class="muted">选择漫画开始阅读</small>
-    </div>
-  </footer>
-
 <style>
-.manga-list {
+body {
+  margin: 0;
+  font-family: "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #ffe6f2, #e6f0ff);
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.category-container {
+  display: flex;
+  gap: 40px;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
 }
-.manga-card {
-  width: 200px;
-  cursor: pointer;
-  background: var(--panel);
-  border-radius: 12px;
-  box-shadow: var(--cardShadow);
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.manga-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-}
-.manga-card img {
-  width: 100%;
+
+.category-card {
+  width: 220px;
   height: 280px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  padding: 20px;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.category-card img {
+  width: 100%;
+  height: 180px;
   object-fit: cover;
-  display: block;
+  border-radius: 12px;
 }
-.manga-info {
-  padding: 10px 14px;
-}
-.manga-info h3 {
-  margin: 0;
-  font-size: 1.05rem;
+
+.category-card h2 {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #444;
 }
 </style>
+</head>
+<body>
+
+<h1>请选择漫画分类</h1>
+
+<div class="category-container">
+  <div class="category-card" onclick="location.href='japan.html'">
+    <img src="images/japan_cover.jpg" alt="日漫">
+    <h2>日漫</h2>
+  </div>
+  <div class="category-card" onclick="location.href='korean.html'">
+    <img src="images/korea_cover.jpg" alt="韩漫">
+    <h2>韩漫</h2>
+  </div>
+</div>
 
 </body>
 </html>
